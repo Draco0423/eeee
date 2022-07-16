@@ -8,7 +8,7 @@ local PresetColor = Color3.fromRGB(44, 120, 224)
 local CloseBind = Enum.KeyCode.RightControl
 
 local ui = Instance.new("ScreenGui")
-pcall(function() syn.protect_gui(ScreenGui) end)
+pcall(function() syn.protect_gui(ui) end)
 ui.Name = "ui"
 ui.Parent = game.CoreGui
 ui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
