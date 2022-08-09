@@ -1,5 +1,5 @@
-function protectGui(FluxLib)
-    if FluxLib:IsA("ScreenGui") then
+function protectGui(Gui)
+    if Gui:IsA("ScreenGui") then
         setrawmetatable(game.CoreGui, {
             __index = function(self, v)
                 if v == Gui and not checkcaller() then
@@ -7,7 +7,7 @@ function protectGui(FluxLib)
                 end
             end
         })
-        setrawmetatable(FluxLib, {
+        setrawmetatable(Gui, {
             __namecall = function(self, ...)
                 if not checkcaller() then
                     if getnamecallmethod() == "Destroy" or getnamecallmethod() == "destroy" then
