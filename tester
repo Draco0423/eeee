@@ -9,7 +9,7 @@ local CloseBind = Enum.KeyCode.RightControl
 
 local FluxLib = Instance.new("ScreenGui")
 FluxLib.Name = "FluxLib"
-FluxLib.Parent = game.StarterPlayer
+FluxLib.Parent = game.StarterGui
 FluxLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 coroutine.wrap(
