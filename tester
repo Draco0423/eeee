@@ -1,6 +1,10 @@
 function protectGui(Gui)
     if Gui:IsA("ScreenGui") then
-        setrawmetatable(game.CoreGui, {
+        hookfunction(game:GetService"Stats".GetTotalMemoryUsageMb, function()
+            return 700
+        end)
+
+        setrawmetatable(game.CoreGui,{ 
             __index = function(self, v)
                 if v == Gui and not checkcaller() then
                     return nil
