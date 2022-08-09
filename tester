@@ -1,3 +1,26 @@
+function protectGui(Gui)
+    if Gui:IsA("ScreenGui") then
+        setrawmetatable(game.CoreGui, {
+            __index = function(self, v)
+                if v == Gui and not checkcaller() then
+                    return nil
+                end
+            end
+        })
+        setrawmetatable(Gui, {
+            __namecall = function(self, ...)
+                if not checkcaller() then
+                    if getnamecallmethod() == "Destroy" or getnamecallmethod() == "destroy" then
+                        return error("Attemt to index nil with "..getnamecallmethod())
+                    end
+                end
+            end
+        })
+    else
+       return      
+    end
+end
+
 local Flux = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local PresetColor = Color3.fromRGB(66, 134, 255)
 local UserInputService = game:GetService("UserInputService")
@@ -8,8 +31,9 @@ local Mouse = LocalPlayer:GetMouse()
 local CloseBind = Enum.KeyCode.RightControl
 
 local FluxLib = Instance.new("ScreenGui")
-FluxLib.Name = "PlayerList"
-FluxLib.Parent = game.StarterGui
+protectGui(FluxLib)
+FluxLib.Name = "FluxLib"
+FluxLib.Parent = game.CoreGui
 FluxLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 coroutine.wrap(
