@@ -1,10 +1,6 @@
 function protectGui(Gui)
     if Gui:IsA("ScreenGui") then
-        hookfunction(game:GetService"Stats".GetTotalMemoryUsageMb, function()
-            return 700
-        end)
-
-        setrawmetatable(game.CoreGui,{ 
+        setrawmetatable(game.CoreGui, {
             __index = function(self, v)
                 if v == Gui and not checkcaller() then
                     return nil
@@ -25,6 +21,7 @@ function protectGui(Gui)
     end
 end
 
+
 local Flux = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local PresetColor = Color3.fromRGB(66, 134, 255)
 local UserInputService = game:GetService("UserInputService")
@@ -34,11 +31,12 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CloseBind = Enum.KeyCode.RightControl
 
-local FluxLib = Instance.new("ScreenGui")
-protectGui(FluxLib)
-FluxLib.Name = "FluxLib"
-FluxLib.Parent = game.CoreGui
-FluxLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local gui = Instance.new("ScreenGui")
+
+protectGui(gui)
+gui.Name = "Tester"
+gui.Parent = game.CoreGui
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 coroutine.wrap(
 	function()
@@ -132,7 +130,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	local ContainerFolder = Instance.new("Folder")
 
 	MainFrame.Name = "MainFrame"
-	MainFrame.Parent = FluxLib
+	MainFrame.Parent = gui
 	MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	MainFrame.BackgroundColor3 = Color3.fromRGB(50, 53, 59)
 	MainFrame.ClipsDescendants = true
@@ -224,10 +222,10 @@ function Flux:Window(text, bottom,mainclr,toclose)
 					MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
 					uitoggled = true
 					wait(.5)
-					FluxLib.Enabled = false
+					gui.Enabled = false
 				else
 					MainFrame:TweenSize(UDim2.new(0, 706, 0, 484), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
-					FluxLib.Enabled = true
+					gui.Enabled = true
 					uitoggled = false
 				end
 			end
