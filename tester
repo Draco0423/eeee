@@ -155,7 +155,7 @@ local LoadingFrame = Main.LoadingFrame
 local TabList = Main.TabList
 
 Rayfield.DisplayOrder = 100
-LoadingFrame.Version.Text = TOPFRAG-WARE
+LoadingFrame.Version.Text = Release
 
 
 -- Variables
